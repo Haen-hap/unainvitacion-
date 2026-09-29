@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Una Invitación</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Pinyon+Script&display=swap" rel="stylesheet">
+<style>
+:root{
+  --vino:#4a1520; --vino2:#621d2c; --papel:#fbf8f2; --gris:#d9d6d0;
+  --oliva:#77804f; --oro:#c19a4a; --tinta:#3b2a2d;
+  --serif:'Cormorant Garamond',Georgia,serif; --script:'Pinyon Script','Snell Roundhand',cursive;
+  /* Cambia esta URL por tu propia foto: --foto:url('foto.jpg'); */
+  --foto:linear-gradient(#cfd8d0 0 30%,transparent 30%);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--serif);color:var(--tinta);font-size:18px;line-height:1.45;
+  background:
+   radial-gradient(circle at 20% 15%,#8d8a84 0 1.5px,transparent 2px) 0 0/34px 34px,
+   radial-gradient(ellipse 60% 30% at 15% 20%,rgba(120,118,112,.35),transparent 70%),
+   radial-gradient(ellipse 50% 25% at 85% 55%,rgba(120,118,112,.3),transparent 70%),
+   radial-gradient(ellipse 60% 30% at 20% 90%,rgba(120,118,112,.3),transparent 70%),
+   #cfccc5;
+  background-attachment:fixed}
+main{max-width:480px;margin:0 auto;padding:28px 18px 60px;display:flex;flex-direction:column;align-items:center;gap:34px;overflow-x:hidden}
+section{width:100%;display:flex;flex-direction:column;align-items:center;text-align:center}
+
+/* papel rasgado */
+.papel{background:var(--papel);width:100%;padding:28px 24px;filter:drop-shadow(0 6px 10px rgba(0,0,0,.22));
+  clip-path:polygon(0 3%,5% 0,11% 2%,18% 0,26% 2%,34% 0,42% 2%,51% 0,60% 2%,69% 0,78% 2%,87% 0,94% 2%,100% 0,100% 97%,95% 100%,88% 98%,79% 100%,70% 98%,60% 100%,50% 98%,41% 100%,31% 98%,22% 100%,13% 98%,6% 100%,0 98%)}
+.papel-wrap{width:100%;filter:drop-shadow(0 6px 8px rgba(0,0,0,.25))}
+.papel-wrap .papel{filter:none}
+.vino{background:var(--vino);color:#f3e6e0;padding:26px 22px;width:100%;box-shadow:0 8px 16px rgba(0,0,0,.3)}
+.script{font-family:var(--script);font-weight:400}
+.nombres{font-family:var(--script);font-size:2.4rem;color:var(--vino);letter-spacing:.02em}
+h2{font-weight:400;font-size:1.5rem;letter-spacing:.06em}
+
+/* sello */
+.sello{position:relative;width:64px;height:64px;border-radius:50%;border:0;cursor:pointer;color:#5e4514;
+  font-family:var(--script);font-size:1.5rem;
+  background:radial-gradient(circle at 35% 30%,#efd18a,var(--oro) 55%,#8a6a25);
+  box-shadow:0 4px 8px rgba(0,0,0,.4),inset 0 0 0 4px rgba(255,255,255,.12),inset 0 0 0 7px rgba(90,60,10,.18)}
+.sello.pulso{animation:pulso 1.8s ease-in-out infinite}
+@keyframes pulso{50%{transform:scale(1.1);box-shadow:0 0 0 12px rgba(193,154,74,.25),0 4px 8px rgba(0,0,0,.4)}}
+
+/* sobre */
+.sobre-zona{width:100%;max-width:340px;text-align:center;padding-top:0;transition:padding-top 1.2s ease .9s}
+.sobre-zona.abierto{padding-top:calc(min(340px,100vw - 36px)*.44)}
+.sobre{position:relative;width:100%;aspect-ratio:1/.86;perspective:1100px;filter:drop-shadow(0 14px 16px rgba(0,0,0,.35))}
+.sobre:not(.abierto){animation:flota 4s ease-in-out infinite}
+.sobre>*{position:absolute}
+.s-fondo{inset:0;background:#330d16;border-radius:3px}
+.carta{left:6%;right:6%;top:6%;bottom:10%;z-index:2;background:var(--papel);padding:10px 10px 12px;display:flex;flex-direction:column;align-items:center;gap:4px;
+  box-shadow:0 2px 6px rgba(0,0,0,.3);transition:transform 1.4s cubic-bezier(.25,.9,.25,1) 1.2s}
+.sobre.abierto .carta{transform:translateY(-62%)}
+.arco{width:74%;flex:1;min-height:0;border-radius:45% 45% 0 0/30% 30% 0 0;background:var(--vino);padding:5px}
+.arco i{display:block;width:100%;height:100%;border-radius:42% 42% 0 0/28% 28% 0 0;
+  background:var(--foto),radial-gradient(ellipse 30% 45% at 30% 60%,#4e6b3c 0 60%,transparent 62%),
+   radial-gradient(ellipse 34% 50% at 70% 55%,#5c7a45 0 60%,transparent 62%),
+   linear-gradient(#e8dcc4,#b8a678 70%,#6f7d4e 70%);background-size:cover}
+.carta h1{font-family:var(--script);font-weight:400;font-size:1.5rem;line-height:1.1;color:var(--vino)}
+.carta small{font-family:var(--script);font-size:1.05rem;color:var(--oliva)}
+.s-bolsillo{inset:0;z-index:3;border-radius:3px;background:linear-gradient(160deg,var(--vino2),var(--vino));
+  clip-path:polygon(0 0,50% 42%,100% 0,100% 100%,0 100%)}
+.s-tapa{left:0;right:0;top:0;height:44%;z-index:4;background:linear-gradient(#73273a,var(--vino2));
+  clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top center;transition:transform .9s ease .4s,z-index 0s .8s}
+.sobre.abierto .s-tapa{transform:rotateX(180deg);z-index:1}
+.sobre .sello{left:50%;top:44%;translate:-50% -50%;z-index:5;transition:transform .5s ease,opacity .5s ease}
+.sobre.abierto .sello{transform:scale(1.6) rotate(18deg);opacity:0;pointer-events:none}
+.pista{margin-top:14px;font-style:italic;font-size:.95rem;color:#4a4a4a;transition:opacity .4s}
+.sobre.abierto ~ .pista{opacity:0}
+body.cerrado main{min-height:100svh;justify-content:center}
+
+/* música */
+.player{display:flex;flex-direction:column;align-items:center;gap:10px}
+.barra{width:80%;height:3px;background:#ddd;border-radius:2px;position:relative}
+.barra span{position:absolute;left:0;top:0;height:100%;width:0;background:var(--vino);border-radius:2px}
+.btn-play{width:52px;height:52px;border-radius:50%;background:var(--vino);color:#fff;border:0;font-size:1.2rem;cursor:pointer;transition:transform .2s}
+.btn-play:hover{transform:scale(1.08)}
+
+/* invitación */
+.padres{display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:.85rem;margin:10px 0}
+.padres b{display:block;font-weight:600;letter-spacing:.05em}
+.cita{font-style:italic;font-size:.95rem}
+.etiqueta{position:relative;display:inline-block;background:var(--oliva);color:#eef0e0;font-size:.72rem;letter-spacing:.06em;
+  padding:16px 14px;margin:6px auto 0;border-radius:42% 58% 55% 45%/50% 45% 55% 50%;box-shadow:0 4px 8px rgba(0,0,0,.3);line-height:1.15;text-transform:none}
+.etiqueta::after{content:"";position:absolute;left:50%;bottom:-16px;width:3px;height:16px;background:var(--oro);translate:-50%}
+
+/* calendario */
+#cal{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;font-size:.85rem;margin-top:10px}
+#cal b{font-weight:600;font-size:.7rem}
+#cal .dia-b{background:var(--vino);color:#fff;border-radius:50%;animation:latido 1.6s infinite}
+@keyframes latido{50%{box-shadow:0 0 0 6px rgba(74,21,32,.25)}}
+
+/* lugar */
+.lugar{display:grid;grid-template-columns:auto 1fr;gap:14px;text-align:left;align-items:center;margin-top:10px}
+.lugar div:first-child{border-right:2px solid var(--vino);padding-right:14px;font-size:1.1rem}
+.lugar div:last-child{color:var(--vino2);font-style:italic}
+.btn{display:inline-block;margin-top:14px;padding:6px 20px;border:1px solid currentColor;border-radius:20px;background:transparent;
+  color:inherit;font:inherit;font-size:.85rem;text-decoration:none;cursor:pointer;transition:background .25s,color .25s}
+.btn:hover{background:var(--vino);color:#fff}
+.vino .btn:hover{background:#f3e6e0;color:var(--vino)}
+
+/* itinerario */
+.linea{position:relative;margin-top:18px;display:flex;flex-direction:column;gap:22px}
+.linea::before{content:"";position:absolute;left:50%;top:6px;bottom:6px;width:1px;background:rgba(243,230,224,.6);translate:-50%}
+.evt{display:grid;grid-template-columns:1fr 34px 1fr;align-items:center;gap:6px;font-size:.85rem}
+.evt .ic{font-size:1.4rem;justify-self:center;background:var(--vino);position:relative;z-index:1;padding:2px 0}
+.evt:nth-child(odd) .txt{grid-column:3;text-align:left}
+.evt:nth-child(odd) .ic{grid-column:2;grid-row:1}
+.evt:nth-child(even) .txt{grid-column:1;text-align:right;grid-row:1}
+.evt:nth-child(even) .ic{grid-column:2;grid-row:1}
+.evt small{display:block;letter-spacing:.08em;font-size:.72rem;opacity:.85}
+
+/* cuenta regresiva */
+.cuenta{display:flex;gap:6px;align-items:flex-start;font-size:2.4rem;letter-spacing:.04em;font-variant-numeric:tabular-nums}
+.cuenta div{display:flex;flex-direction:column;align-items:center}
+.cuenta small{font-size:.7rem;letter-spacing:.08em}
+.cuenta i{font-style:normal;opacity:.6}
+
+.dos{display:grid;grid-template-columns:1fr;gap:16px;width:100%}
+.aviso{font-size:.95rem}
+.datos{font-size:.9rem;letter-spacing:.08em;margin-top:8px;line-height:1.7}
+.gracias{font-family:var(--script);font-size:1.8rem;color:var(--vino)}
+
+/* animaciones de entrada */
+.rev{opacity:0;transform:translateY(28px) rotate(var(--r,0deg));transition:opacity .9s ease,transform .9s cubic-bezier(.2,.8,.2,1)}
+.rev.on{opacity:1;transform:rotate(var(--r,0deg))}
+.flota{animation:flota 6s ease-in-out infinite}
+@keyframes flota{50%{transform:translateY(-6px)}}
+.petalo{position:fixed;top:-30px;width:12px;height:16px;background:radial-gradient(circle at 30% 30%,#8a2a3c,#3f0f1a);
+  border-radius:60% 0 60% 0;opacity:.7;pointer-events:none;z-index:9;animation:cae linear forwards}
+@keyframes cae{to{transform:translate(var(--dx),108vh) rotate(540deg)}}
+#contenido{display:contents}
+#contenido[hidden]{display:none}
+body.cerrado{overflow:hidden}
+button:focus-visible,a:focus-visible{outline:2px solid var(--oro);outline-offset:3px}
+@media(min-width:700px){main{max-width:520px;padding-top:50px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.01ms!important}.rev{opacity:1;transform:none}}
+</style>
+</head>
+<body class="cerrado">
+<main>
+
+  <!-- PORTADA + SOBRE -->
+  <section>
+    <div class="sobre-zona" id="zona">
+      <div class="sobre" id="sobre">
+        <div class="s-fondo"></div>
+        <div class="carta">
+          <div class="arco"><i></i></div>
+          <h1>Una Invitación</h1>
+          <small>TKM</small>
+        </div>
+        <div class="s-bolsillo"></div>
+        <div class="s-tapa"></div>
+        <button class="sello pulso" id="abrir" aria-label="Abrir invitación">H&amp;C</button>
+      </div>
+      <p class="pista">Toca el sello para abrir</p>
+    </div>
+  </section>
+
+  <div id="contenido" hidden>
+  <!-- MÚSICA -->
+  <section class="rev" style="--r:-1deg">
+    <div class="papel-wrap"><div class="papel player">
+      <p>Dale play para escuchar</p>
+      <div class="barra"><span id="prog"></span></div>
+      <button class="btn-play" id="play" aria-label="Reproducir música">▶</button>
+      <audio id="audio" src="Smile.mp3" preload="none"></audio>
+    </div></div>
+  </section>
+
+  <!-- CALENDARIO -->
+  <section class="rev" style="--r:-1.5deg">
+    <div class="papel-wrap"><div class="papel">
+      <p class="cita">“Un Día Diferente.”</p>
+      <p class="script" style="font-size:1.6rem;margin-top:10px;color:var(--vino)">El gran día</p>
+      <h2 id="mes"></h2>
+      <div id="cal"></div>
+    </div></div>
+  </section>
+
+  <!-- CEREMONIA -->
+  <section class="rev" style="--r:1deg">
+    <div class="papel-wrap"><div class="papel">
+      <h2>¿Donde?</h2>
+      <div class="lugar">
+        <div id="hora">1:00 p.m.</div>
+        <div>Villa Del Carmen<br><small>Calle 8, mano izquierda</small></div>
+      </div></div>
+  </section>
+
+  <!-- ITINERARIO -->
+  <section class="rev">
+    <div class="vino">
+      <h2 style="font-size:1.7rem">Itinerario</h2>
+      <div class="linea">
+        <div class="evt rev"><span class="ic">🏠</span><div class="txt"><small>1:00 PM</small>Llegda</div></div>
+        <div class="evt rev"><span class="ic">🧩</span><div class="txt"><small>3:15 PM</small>Buscar la pieza</div></div>
+        <div class="evt rev"><span class="ic">🎶</span><div class="txt"><small>4:00 PM</small>Escuchar musica</div></div>
+        <div class="evt rev"><span class="ic">📝</span><div class="txt"><small>5:30 PM</small>Ida a la U</div></div>
+        <div class="evt rev"><span class="ic">🤓</span><div class="txt"><small>6:00 PM</small>Clases</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FRASE -->
+  <section class="rev">
+    <div class="vino"><p class="script" style="font-size:1.4rem">Las casualidades son las coincidencias más lindas aveces</p></div>
+  </section>
+
+
+
+  <section class="rev">
+    <div class="papel-wrap"><div class="papel">
+      <p class="script" style="font-size:1.7rem;color:var(--vino)">Nos Vemos Mañana</p>
+      <p style="font-size:.85rem">Gracias por los Cables tipo "C"</p>
+      <p class="gracias">💕Te Quiero💕</p>
+    </div></div>
+  </section>
+
+  </div>
+</main>
+
+<script>
+/* ====== CONFIGURA AQUÍ TUS DATOS ====== */
+const BODA = {
+  fecha: new Date('2026-09-29T17:00:00'),   // fecha y hora de la boda
+  foto: 'foto.jpg',                         // imagen del sobre: archivo junto al index.html o una URL https://...
+  whatsapp: '50700000000',                  // número con código de país, sin +
+  mensaje: 'Hola, confirmo mi asistencia a la boda de Lucía y Daniel.'
+};
+/* ======================================= */
+
+// Foto del sobre
+if(BODA.foto) document.documentElement.style.setProperty('--foto',`url("${BODA.foto}") center/cover no-repeat`);
+
+// Abrir sobre
+const sobre = document.getElementById('sobre'), abrir = document.getElementById('abrir');
+abrir.addEventListener('click', () => {
+  sobre.classList.add('abierto');
+  document.getElementById('zona').classList.add('abierto');
+  abrir.classList.remove('pulso');
+  setTimeout(()=>lluvia(22),1600);
+  setTimeout(()=>{
+    document.body.classList.remove('cerrado');
+    document.getElementById('contenido').hidden=false;
+    document.getElementById('play').closest('section').scrollIntoView({behavior:'smooth',block:'start'});
+  },3800);
+});
+
+// Pétalos que caen
+function lluvia(n){
+  if(matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+  for(let i=0;i<n;i++){
+    const p=document.createElement('div');
+    p.className='petalo';
+    p.style.left=Math.random()*100+'vw';
+    p.style.setProperty('--dx',(Math.random()*120-60)+'px');
+    p.style.animationDuration=(4+Math.random()*4)+'s';
+    p.style.animationDelay=(Math.random()*1.5)+'s';
+    document.body.appendChild(p);
+    setTimeout(()=>p.remove(),10000);
+  }
+}
+
+// Revelado al hacer scroll
+const io = new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}
+}),{threshold:.15});
+document.querySelectorAll('.rev').forEach(el=>io.observe(el));
+
+// Música
+const audio=document.getElementById('audio'), play=document.getElementById('play'), prog=document.getElementById('prog');
+play.addEventListener('click',()=>{
+  if(audio.paused){audio.play().then(()=>play.textContent='❚❚').catch(()=>alert('Agrega tu archivo cancion.mp3 junto al index.html'))}
+  else{audio.pause();play.textContent='▶'}
+});
+audio.addEventListener('timeupdate',()=>prog.style.width=(audio.currentTime/audio.duration*100||0)+'%');
+audio.addEventListener('ended',()=>play.textContent='▶');
+
+// Calendario
+(function(){
+  const f=BODA.fecha, y=f.getFullYear(), m=f.getMonth();
+  const mes=f.toLocaleDateString('es',{month:'long'}).toUpperCase()+' '+y;
+  document.getElementById('mes').textContent=mes;
+  const cal=document.getElementById('cal');
+  ['LU','MA','MI','JU','VI','SA','DO'].forEach(d=>cal.insertAdjacentHTML('beforeend',`<b>${d}</b>`));
+  const inicio=(new Date(y,m,1).getDay()+6)%7, total=new Date(y,m+1,0).getDate();
+  for(let i=0;i<inicio;i++) cal.insertAdjacentHTML('beforeend','<span></span>');
+  for(let d=1;d<=total;d++) cal.insertAdjacentHTML('beforeend',`<span class="${d===f.getDate()?'dia-b':''}">${d}</span>`);
+  document.getElementById('hora').textContent=f.toLocaleTimeString('es',{hour:'numeric',minute:'2-digit'});
+})();
+
+// Cuenta regresiva
+(function(){
+  const $=id=>document.getElementById(id), z=n=>String(n).padStart(2,'0');
+  function tick(){
+    let t=Math.max(0,BODA.fecha-new Date())/1000;
+    $('d').textContent=z(Math.floor(t/86400));
+    $('h').textContent=z(Math.floor(t%86400/3600));
+    $('m').textContent=z(Math.floor(t%3600/60));
+    $('s').textContent=z(Math.floor(t%60));
+  }
+  tick(); setInterval(tick,1000);
+})();
+
+// WhatsApp
+document.getElementById('wa').href=`https://wa.me/${BODA.whatsapp}?text=${encodeURIComponent(BODA.mensaje)}`;
+</script>
+</body>
+</html>
